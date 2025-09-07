@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      color: #111;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 36px 40px 48px 40px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      color: #111;
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    h1 {
+      font-size: 2.6rem;
+      margin: 0 0 36px 0;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -1.2px;
+      color: #000;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.85);
+    }
+    h3 {
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+    h4 {
+      margin-top: 24px;
+      font-weight: 600;
+      color: #2980b9;
+    }
+    .error {
+      color: #c0392b;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 36px;
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: 600;
+      border-bottom: 1.5px dashed #74a9e1;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    a.back-link:hover,
+    a.back-link:focus {
+      color: #1c5d8b;
+      border-color: #1c5d8b;
+      outline: none;
+    }
+    .panel {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 20px 28px 28px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.05);
+      color: #111;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    ul li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #222;
+    }
+    ul li:before {
+      content: "•";
+      color: #74a9e1;
+      font-weight: 700;
+      font-size: 1.6em;
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1;
+    }
+    .career-card {
+      width: 100%;
+      box-sizing: border-box;
+      background: #fff;
+      border: 1.5px solid #bdd7f6;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 12px rgba(50,70,100,0.1);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      color: #111;
+    }
+    .career-card:hover {
+      box-shadow: 0 12px 36px rgba(50,70,100,0.25);
+      transform: translateY(-4px);
+    }
+    .career-buttons {
+      margin-top: 20px;
+    }
+    .career-buttons a {
+      display: inline-block;
+      padding: 10px 18px;
+      margin-right: 12px;
+      text-decoration: none;
+      color: white;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.15s;
+    }
+    .career-buttons a:hover,
+    .career-buttons a:focus {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transform: translateY(-3px);
+      outline: none;
+    }
+    .roadmap-btn {
+      background: #27ae60;
+    }
+    .roadmap-btn:hover {
+      background: #1f924a;
+    }
+    .trends-btn {
+      background: #2980b9;
+    }
+    .trends-btn:hover {
+      background: #1f5986;
+    }
+    pre {
+      white-space: pre-wrap;
+      font-family: 'Courier New', Courier, monospace;
+      background: #f0f4fb;
+      padding: 18px 24px;
+      border-radius: 16px;
+      overflow-x: auto;
+      font-size: 1rem;
+      line-height: 1.5;
+      box-shadow: inset 0 0 8px rgba(50,70,100,0.12);
+      max-height: 320px;
+      color: #111;
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 28px 24px 36px 24px;
+        margin: 20px auto;
+        border-radius: 20px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      .career-buttons a {
+        padding: 8px 14px;
+        font-size: 13px;
+        margin-right: 8px;
+      }
+      pre {
+        max-height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Resume Analysis Results</h1>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+      <a href="{{ url_for('index') }}" class="back-link">⬅ Back</a>
+    {% else %}
+      <div class="panel">
+        <h3>Extracted Skills</h3>
+        {% if skills and skills|length > 0 %}
+          <ul>
+          {% for s in skills %}
+            <li>{{ s }}</li>
+          {% endfor %}
+          </ul>
+        {% else %}
+          <p>No skills found by rule-based extractor.</p>
+        {% endif %}
+      </div>
+      <div class="panel">
+        <h3>ML Predictions</h3>
+        {% if model_loaded and ml_result %}
+          <div class="career-card">
+            <strong>Best Prediction:</strong> {{ ml_result.predicted }}
+            ({{ (ml_result.predicted_prob * 100) | round(1) }}% confidence)
+            <div class="career-buttons">
+              <a class="roadmap-btn" href="{{ url_for('show_roadmap', topic=ml_result.predicted) }}">View Roadmap</a>
+              <a class="trends-btn" href="{{ url_for('show_trends', career=ml_result.predicted) }}">View Trends</a>
+            </div>
+          </div>
+          <h4>Other Likely Careers</h4>
+          {% for item in ml_result.topk[1:] %}
+            <div class="career-card">
+              {{ item.career }} — {{ (item.prob * 100) | round(1) }}%
+              <div class="career-buttons">
+                <a class="roadmap-btn" href="{{ url_for('show_roadmap', topic=item.career) }}">View Roadmap</a>
+                <a class="trends-btn" href="{{ url_for('show_trends', career=item.career) }}">View Trends</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% elif not model_loaded %}
+          
+        {% else %}
+          <p>Model failed to make predictions.</p>
+        {% endif %}
+      </div>
+      <div class="panel">
+        <h3>Rule-Based Recommendations</h3>
+        {% if rule_recs and rule_recs|length > 0 %}
+          {% for r in rule_recs %}
+            <div class="career-card">
+              <strong>{{ r.career }}</strong> (score: {{ r.score }})
+              <div class="career-buttons">
+                <a class="roadmap-btn" href="{{ url_for('show_roadmap', topic=r.career) }}">View Roadmap</a>
+                <a class="trends-btn" href="{{ url_for('show_trends', career=r.career) }}">View Trends</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No rule-based career matches.</p>
+        {% endif %}
+      </div>
+      <div class="panel">
+        <h3>Resume Snippet</h3>
+        <pre>{{ text_snippet }}</pre>
+      </div>
+      <a href="{{ url_for('index') }}" class="back-link">⬅ Back</a>
+    {% endif %}
+  </div>
+</body>
+</html>

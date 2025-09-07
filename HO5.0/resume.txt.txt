@@ -1,0 +1,29 @@
+Yashwant Nayak
+--------------------
+Email: dpnayak333@gmail.com
+Phone: 8247646186
+LinkedIn: https://www.linkedin.com/in/yashwant-nayak-217a60291
+
+Education:
+- B.Tech in Computer Science and Engineering (NIST University Berhampur), 2023–Present
+- 1st Semester CGPA: 8.8
+- 2nd Semester CGPA: 8.1
+
+Skills:
+- Python, C, C#, Java, JavaScript, SQL
+- php,typescript,nodejs,react
+- Flask
+- HTML, CSS
+- Google Cloud (AI/ML, GenAI, Facilitator Program)
+
+Experience:
+- Internship at Asirudh Software Private Limited as Backend Developer
+- Built projects: YouTube Clone (HTML/CSS), Cube Runner Game (Unity), Jarvis AI Assistant (Python + 3D Model)
+
+Projects:
+- Real-time Object Detection with Audio Output (AI for visually impaired assistance)
+- AR-Powered Smart Career Mentor (Hackathon Project)
+
+Achievements:
+- Google Cloud Facilitator Program 2024
+- Google Cloud GenAI Study Jam Program

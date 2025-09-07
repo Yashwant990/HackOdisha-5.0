@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>{{ topic }} Roadmap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+      color: #222E44;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .container {
+      max-width: 650px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 32px 28px 40px 28px;
+      box-sizing: border-box;
+      color: #1c2331;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 28px;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      color: #f0f7ffcc;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.33);
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      margin-bottom: 14px;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 30px rgba(31, 38, 135, 0.13);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      transition: box-shadow 0.25s ease, transform 0.15s ease;
+      cursor: default;
+      color: #142533;
+      font-size: 1.14rem;
+      font-weight: 600;
+    }
+    li:hover {
+      box-shadow: 0 8px 48px rgba(31, 38, 135, 0.27);
+      transform: translateY(-4px);
+    }
+    input[type="checkbox"] {
+      transform: scale(1.3);
+      margin-right: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+      accent-color: #4dabf7;
+      filter: drop-shadow(0 0 1px rgba(255,255,255,0.9));
+    }
+    a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 600;
+      font-size: 1.12rem;
+      transition: color 0.2s ease;
+      flex-grow: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+    }
+    a:hover, a:focus {
+      color: #7bb1f9;
+      outline: none;
+      text-shadow: 0 1px 6px rgba(119,163,255,0.9);
+    }
+    span {
+      font-size: 1.12rem;
+      color: #c6d5e9cc;
+      flex-grow: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: rgba(255, 255, 255, 0.25);
+      color: #f0f7ffdd;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      user-select: none;
+      border: 1px solid rgba(255, 255, 255, 0.44);
+      box-shadow: 0 8px 28px rgba(31, 38, 135, 0.30);
+      cursor: pointer;
+      margin-top: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .btn:hover, .btn:focus {
+      background: rgba(255, 255, 255, 0.44);
+      color: #d1e9ff;
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.45);
+      transform: translateY(-3px);
+      outline: none;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 24px 16px 32px 16px;
+      }
+      li {
+        padding: 12px 14px;
+      }
+      input[type="checkbox"] {
+        margin-right: 12px;
+      }
+      a, span {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ topic }} Roadmap</h1>
+
+    {% if roadmap and roadmap|length > 0 %}
+      <ul>
+        {% for step in roadmap %}
+          <li>
+            <input 
+              type="checkbox"
+              onchange="markComplete('{{ url_for('complete_step', topic=topic, step_index=loop.index0) }}', this);"
+              {% if loop.index0 in completed_steps_list %} checked {% endif %}
+              aria-label="Mark {{ step }} as complete"
+            >
+            {% if step in all_topics %}
+              <a href="{{ url_for('show_roadmap', topic=step) }}">{{ step }}</a>
+            {% else %}
+              <span>{{ step }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="text-align:center; color:#cce5ff; font-size:1.1rem;">No roadmap available for "{{ topic }}".</p>
+    {% endif %}
+
+    <a href="{{ back_link }}" class="btn">⬅ Back</a>
+  </div>
+
+  <script>
+    function markComplete(url, checkbox) {
+      const action = checkbox.checked ? "check" : "uncheck";
+
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: action })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === "success") {
+          console.log('Step updated successfully.');
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    }
+  </script>
+</body>
+</html>
